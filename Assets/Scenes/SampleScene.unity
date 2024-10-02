@@ -209,13 +209,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32919413, y: -0, z: -0, w: 0.9442623}
-  m_LocalPosition: {x: 0, y: 5.35, z: -3.64}
+  m_LocalRotation: {x: 0.56963813, y: 0, z: 0, w: 0.8218956}
+  m_LocalPosition: {x: 0.04, y: 6.077, z: -1.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 38.44, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 69.45, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd59814412a63c4c8ac8d8c5f42aa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 8044882535206822796}
+  offset: 6
+  height: 0
+  alphaAngle: 255
+  betaAngle: 45
 --- !u!54 &358660366
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1861,7 +1866,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.17
-  m_Height: 2.3266413
+  m_Height: 2.1
   m_Direction: 1
   m_Center: {x: 0.00003376603, y: 1.0264003, z: -0.041505262}
 --- !u!4 &4497924804670834057
@@ -3094,9 +3099,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842402df3cc80624db6277fcae5182ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  runFactor: 0
-  jumpForce: 0
+  moveSpeed: 4
+  runFactor: 1.5
+  jumpForce: 100
 --- !u!4 &8082498694356050854
 Transform:
   m_ObjectHideFlags: 0
