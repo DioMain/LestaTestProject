@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IInitialize
 {
     public static GameManager Instance;
+
+    public GameConfig Config;
 
     private void Awake()
     {
@@ -12,8 +14,15 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            Initialize();
         }
         else
             Destroy(gameObject);
+    }
+
+    public void Initialize()
+    {
+        Config = Resources.Load<GameConfig>("Config");
     }
 }
