@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, IInitialize
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour, IInitialize
 
     public void Initialize()
     {
+        Cursor.visible = false;
+
         Config = Resources.Load<GameConfig>("Config");
     }
 }

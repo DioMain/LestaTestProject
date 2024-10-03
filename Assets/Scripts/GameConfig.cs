@@ -9,4 +9,6 @@ public class GameConfig : ScriptableObject
     public KeyCode MoveRight = KeyCode.D;
 
     public KeyCode Run = KeyCode.LeftShift;
+
+    public KeyCode Jump = KeyCode.Space;
 }

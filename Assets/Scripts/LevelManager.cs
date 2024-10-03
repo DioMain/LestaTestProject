@@ -12,5 +12,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+
+        Player.Initialize();
     }
 }

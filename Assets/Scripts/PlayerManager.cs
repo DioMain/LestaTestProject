@@ -8,6 +8,6 @@ public class PlayerManager : MonoBehaviour, IInitialize
 
     public void Initialize()
     {
-        
+        Movement.Initialize();
     }
 }
