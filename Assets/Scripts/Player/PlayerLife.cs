@@ -5,6 +5,8 @@ public class PlayerLife
 {
     public float Heal { get; private set; }
 
+    public float MaxHeal => config.MaxHeal;
+
     public event Action OnDamage;
     public event Action OnHealing;
     public event Action OnDeath;
@@ -28,7 +30,7 @@ public class PlayerLife
 
     public void Healing(float heal)
     {
-        Heal = Mathf.Clamp(Heal + heal, 0, config.MaxHeal);
+        Heal = Mathf.Clamp(Heal + heal, 0, MaxHeal);
 
         OnHealing?.Invoke();
     }

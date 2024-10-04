@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public PlayerManager Player;
     public CameraCapture CameraCapture;
+    public UIManager UI;
 
     private void Start()
     {
