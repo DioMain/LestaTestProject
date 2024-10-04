@@ -332,8 +332,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286307361461082271}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 55
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -348,7 +348,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &5345091343661354224
@@ -364,11 +364,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelTrasform: {fileID: 4723804049980660338}
-  floorPoint: {fileID: 5940829836919264078}
+  groundPoint: {fileID: 5940829836919264078}
   body: {fileID: 8676925790602838778}
-  moveSpeed: 4
-  runFactor: 1.5
-  jumpForce: 7
+  moveSpeed: 14
+  runFactor: 1.25
+  notGroundFactor: 0.2
+  jumpForce: 350
   jumpRayDistance: 0.1
   rotateForce: 4
 --- !u!114 &4838213747493866056
@@ -1466,7 +1467,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3930076976122730758}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b9a0461dc81aea24b8b75d21583952fd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

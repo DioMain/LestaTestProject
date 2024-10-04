@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour, IInitialize
     public static GameManager Instance;
 
     public GameConfig Config;
+    public PlayerLife Life;
 
     private void Awake()
     {
@@ -22,10 +23,12 @@ public class GameManager : MonoBehaviour, IInitialize
             Destroy(gameObject);
     }
 
-    public void Initialize()
+    public void Initialize()    
     {
         Cursor.visible = false;
 
         Config = Resources.Load<GameConfig>("Config");
+
+        Life = new PlayerLife(Config);
     }
 }

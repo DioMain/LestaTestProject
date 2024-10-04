@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour, IInitialize
     [SerializeField]
     private Transform modelTrasform;
     [SerializeField] 
-    private Transform floorPoint;
+    private Transform groundPoint;
 
     [SerializeField]
     private Rigidbody body;
@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour, IInitialize
     private float moveSpeed;
     [SerializeField]
     private float runFactor;
+    [SerializeField]
+    private float notGroundFactor = 0.2f;
 
     [SerializeField]
     private float jumpForce;
@@ -60,7 +62,7 @@ public class PlayerMovement : MonoBehaviour, IInitialize
 
         moveDirection = moveDirection.normalized;
 
-        isGround = Physics.Raycast(floorPoint.position, Vector3.down, jumpRayDistance, LayerMask.GetMask("Floor"));
+        isGround = Physics.Raycast(groundPoint.position, Vector3.down, jumpRayDistance, LayerMask.GetMask("Floor"));
 
         if (isGround && Input.GetKeyDown(GameManager.Instance.Config.Jump))
             body.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -69,6 +71,11 @@ public class PlayerMovement : MonoBehaviour, IInitialize
     }
 
     private void FixedUpdate()
+    {
+        MovementLogic();
+    }
+
+    private void MovementLogic()
     {
         if (IsMove)
         {
@@ -81,7 +88,7 @@ public class PlayerMovement : MonoBehaviour, IInitialize
             resultMoveVector.x = originalX * Mathf.Cos(-alpha * Mathf.Deg2Rad) - originalZ * Mathf.Sin(-alpha * Mathf.Deg2Rad);
             resultMoveVector.z = originalX * Mathf.Sin(-alpha * Mathf.Deg2Rad) + originalZ * Mathf.Cos(-alpha * Mathf.Deg2Rad);
 
-            transform.position += resultMoveVector * moveSpeed * (IsRun ? runFactor : 1) * Time.fixedDeltaTime;
+            body.AddForce(resultMoveVector * moveSpeed * (IsRun ? runFactor : 1) * (!isGround ? notGroundFactor : 1), ForceMode.Impulse);
         }
     }
 
