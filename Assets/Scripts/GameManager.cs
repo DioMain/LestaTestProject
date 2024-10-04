@@ -23,12 +23,13 @@ public class GameManager : MonoBehaviour, IInitialize
             Destroy(gameObject);
     }
 
-    public void Initialize()    
+    public void Initialize()
     {
         Cursor.visible = false;
 
         Config = Resources.Load<GameConfig>("Config");
 
         Life = new PlayerLife(Config);
+        Life.Restore();
     }
 }

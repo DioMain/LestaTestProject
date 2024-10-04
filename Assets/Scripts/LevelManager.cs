@@ -15,5 +15,6 @@ public class LevelManager : MonoBehaviour
         Instance = this;
 
         Player.Initialize();
+        UI.Initialize();
     }
 }

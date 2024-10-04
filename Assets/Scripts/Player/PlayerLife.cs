@@ -34,4 +34,6 @@ public class PlayerLife
 
         OnHealing?.Invoke();
     }
+
+    public void Restore() => Heal = MaxHeal;
 }
