@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour, IInitialize
@@ -30,8 +27,6 @@ public class UIManager : MonoBehaviour, IInitialize
 
     private void Life_OnDamage()
     {
-        Debug.Log(GameManager.Instance.Life.Heal);
-        Debug.Log(GameManager.Instance.Life.MaxHeal);
         lineBar.SetValue(GameManager.Instance.Life.Heal / GameManager.Instance.Life.MaxHeal);
     }
 }
