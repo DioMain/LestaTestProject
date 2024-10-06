@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public PlayerManager Player;
     public CameraCapture CameraCapture;
     public UIManager UI;
+    public CheckpointManager Checkpoint;
 
     private void Start()
     {
@@ -16,5 +17,7 @@ public class LevelManager : MonoBehaviour
 
         Player.Initialize();
         UI.Initialize();
+
+        Checkpoint = new CheckpointManager();
     }
 }

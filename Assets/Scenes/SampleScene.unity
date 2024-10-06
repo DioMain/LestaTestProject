@@ -1213,6 +1213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1162514941}
   - component: {fileID: 1162514940}
+  - component: {fileID: 1162514942}
   m_Layer: 7
   m_Name: DeadZone
   m_TagString: Untagged
@@ -1235,7 +1236,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1250,12 +1251,24 @@ Transform:
   m_GameObject: {fileID: 1162514939}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -100, z: 0}
+  m_LocalPosition: {x: 0, y: -50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1162514942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162514939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718ca8fb224a11b47b7a9011df26f33d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1213796450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2472,7 +2485,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3020,13 +3033,13 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 5
+    type: 18
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0, z: -3}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 6, y: 6, z: 6}
     placementMode: 0
@@ -3226,7 +3239,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3665,8 +3678,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 0.42745098}
+        key2: {r: 0, g: 0, b: 0, a: 0.50980395}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -3682,9 +3695,9 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 17502
-        atime2: 45566
+        atime2: 45412
         atime3: 65535
-        atime4: 0
+        atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0

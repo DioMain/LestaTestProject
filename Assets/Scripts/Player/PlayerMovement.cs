@@ -1,17 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IInitialize
+public class PlayerMovement : MonoBehaviourPlus
 {
+    [Header("Ссылки")]
     [SerializeField]
     private Transform modelTrasform;
     [SerializeField] 
     private Transform groundPoint;
-
     [SerializeField]
     private Rigidbody body;
 
+    [Header("Настройки")]
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
@@ -19,19 +19,25 @@ public class PlayerMovement : MonoBehaviour, IInitialize
     [SerializeField]
     private float notGroundFactor = 0.2f;
 
+    [Space]
+
     [SerializeField]
     private float jumpForce;
     [SerializeField]
     private float jumpRayDistance = 0.3f;
 
+    [Space]
+
     [SerializeField]
     private float rotateForce = 1.5f;
 
-    private bool isGround = false;
-    public bool IsGround => isGround;
+    [Space]
 
-    private bool isRun = false;
-    public bool IsRun => isRun;
+    public bool CanMove = true;
+    public bool CanJump = true;
+
+    public bool IsGround { get; private set; } = false;
+    public bool IsRun { get; private set; } = false;
 
     public bool IsMove => moveDirection != Vector3.zero;
 
@@ -39,7 +45,7 @@ public class PlayerMovement : MonoBehaviour, IInitialize
 
     private Vector3 CameraFoward => LevelManager.Instance.CameraCapture.transform.forward;
 
-    public void Initialize()
+    public override void Initialize()
     {
         StartCoroutine(RotationAnimation());
     }
@@ -48,26 +54,26 @@ public class PlayerMovement : MonoBehaviour, IInitialize
     {
         moveDirection = Vector3.zero;
 
-        if (Input.GetKey(GameManager.Instance.Config.MoveUp))
+        if (Input.GetKey(Game.Config.MoveUp))
             moveDirection += Vector3.forward;
 
-        if (Input.GetKey(GameManager.Instance.Config.MoveLeft))
+        if (Input.GetKey(Game.Config.MoveLeft))
             moveDirection += Vector3.left;
 
-        if (Input.GetKey(GameManager.Instance.Config.MoveDown))
+        if (Input.GetKey(Game.Config.MoveDown))
             moveDirection -= Vector3.forward;
 
-        if (Input.GetKey(GameManager.Instance.Config.MoveRight))
+        if (Input.GetKey(Game.Config.MoveRight))
             moveDirection += Vector3.right;
 
         moveDirection = moveDirection.normalized;
 
-        isGround = Physics.Raycast(groundPoint.position, Vector3.down, jumpRayDistance, LayerMask.GetMask("Floor"));
+        IsGround = Physics.Raycast(groundPoint.position, Vector3.down, jumpRayDistance, LayerMask.GetMask("Floor"));
 
-        if (isGround && Input.GetKeyDown(GameManager.Instance.Config.Jump))
+        if (IsGround && CanJump && Input.GetKeyDown(GameManager.Instance.Config.Jump))
             body.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-        isRun = Input.GetKey(GameManager.Instance.Config.Run);
+        IsRun = Input.GetKey(Game.Config.Run);
     }
 
     private void FixedUpdate()
@@ -77,7 +83,7 @@ public class PlayerMovement : MonoBehaviour, IInitialize
 
     private void MovementLogic()
     {
-        if (IsMove)
+        if (IsMove && CanMove)
         {
             Vector3 resultMoveVector = new Vector3(CameraFoward.x, 0, CameraFoward.z).normalized;
             float alpha = Vector3.SignedAngle(Vector3.forward, moveDirection, Vector3.up);
@@ -88,7 +94,7 @@ public class PlayerMovement : MonoBehaviour, IInitialize
             resultMoveVector.x = originalX * Mathf.Cos(-alpha * Mathf.Deg2Rad) - originalZ * Mathf.Sin(-alpha * Mathf.Deg2Rad);
             resultMoveVector.z = originalX * Mathf.Sin(-alpha * Mathf.Deg2Rad) + originalZ * Mathf.Cos(-alpha * Mathf.Deg2Rad);
 
-            body.AddForce(resultMoveVector * moveSpeed * (IsRun ? runFactor : 1) * (!isGround ? notGroundFactor : 1), ForceMode.Impulse);
+            body.AddForce(resultMoveVector * moveSpeed * (IsRun ? runFactor : 1) * (!IsGround ? notGroundFactor : 1), ForceMode.Impulse);
         }
     }
 
