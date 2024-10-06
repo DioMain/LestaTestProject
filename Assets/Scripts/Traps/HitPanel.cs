@@ -34,10 +34,12 @@ public class HitPanel : MonoBehaviour
     private IEnumerator DamageCoroutine()
     {
         meshRenderer.material.color = new Color(0.75f, 0.5f, 0);
+        meshRenderer.material.SetColor("BaseColor", new Color(0.75f, 0.5f, 0));
 
         yield return new WaitForSeconds(1f);
 
         meshRenderer.material.color = Color.red;
+        meshRenderer.material.SetColor("BaseColor", Color.red);
 
         if (playerIsTouch)
             GameManager.Instance.Life.Damage(damage);
@@ -45,6 +47,7 @@ public class HitPanel : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
 
         meshRenderer.material.color = new Color(0.75f, 0.7f, 0.7f);
+        meshRenderer.material.SetColor("BaseColor", new Color(0.75f, 0.7f, 0.7f));
 
         yield return new WaitForSeconds(5f);
 
