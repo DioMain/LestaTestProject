@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour, IInitialize
 
     public GameConfig Config;
     public PlayerLife Life;
+    public WinManager Win;
 
     private void Awake()
     {
@@ -22,9 +23,9 @@ public class GameManager : MonoBehaviour, IInitialize
 
     public void Initialize()
     {
-        Cursor.visible = false;
-
         Config = Resources.Load<GameConfig>("Config");
+
+        Win = new WinManager();
 
         Life = new PlayerLife(Config);
         Life.Restore();

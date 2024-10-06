@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviourPlus
 
     public bool CanMove = true;
     public bool CanJump = true;
+    public bool CanRotate = true;
 
     public bool IsGround { get; private set; } = false;
     public bool IsRun { get; private set; } = false;
@@ -102,7 +103,7 @@ public class PlayerMovement : MonoBehaviourPlus
     {
         while (true)
         {
-            if (IsMove)
+            if (IsMove && CanRotate)
             {
                 float angle0 = Vector3.SignedAngle(transform.forward, moveDirection, Vector3.up);
                 float angle1 = Vector3.SignedAngle(transform.forward, new Vector3(CameraFoward.x, 0, CameraFoward.z), Vector3.up);

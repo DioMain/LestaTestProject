@@ -7,9 +7,9 @@ public class HitPanel : MonoBehaviour
     [SerializeField]
     private float damage;
     [SerializeField]
-    private bool playerIsTouch = false;
-    [SerializeField]
     private MeshRenderer meshRenderer;
+
+    private bool playerIsTouch = false;
 
     private Coroutine damageCoroutine = null;
     private bool isDamaging => damageCoroutine != null;
@@ -44,7 +44,7 @@ public class HitPanel : MonoBehaviour
 
         yield return new WaitForSeconds(0.15f);
 
-        meshRenderer.material.color = new Color(0.75f, 0.75f, 0.75f);
+        meshRenderer.material.color = new Color(0.75f, 0.7f, 0.7f);
 
         yield return new WaitForSeconds(5f);
 

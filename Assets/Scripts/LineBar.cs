@@ -14,6 +14,6 @@ public class LineBar : MonoBehaviour, IInitialize
 
     public void SetValue(float value)
     {
-        bar.sizeDelta = new Vector2(defaultSize.x * value, defaultSize.y);   
+        bar.sizeDelta = new Vector2(defaultSize.x * value, defaultSize.y);
     }
 }

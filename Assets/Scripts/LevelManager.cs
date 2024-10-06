@@ -15,9 +15,12 @@ public class LevelManager : MonoBehaviour
     {
         Instance = this;
 
+        Cursor.visible = false;
+        GameManager.Instance.Life.Restore();
+
+        Checkpoint = new CheckpointManager(this);
+
         Player.Initialize();
         UI.Initialize();
-
-        Checkpoint = new CheckpointManager();
     }
 }

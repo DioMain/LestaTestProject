@@ -11,7 +11,7 @@ public class PlayerLife
     public event Action OnHealing;
     public event Action OnDeath;
 
-    private GameConfig config;
+    private readonly GameConfig config;
 
     public PlayerLife(GameConfig config)
     {

@@ -1,14 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadZone : MonoBehaviour
+public class DeadZone : MonoBehaviourPlus
 {
+    [SerializeField]
+    private float damage;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.attachedRigidbody.CompareTag("Player"))
         {
+            Game.Life.Damage(damage);
 
+            Level.Checkpoint.SpawnPlayer();
         }
     }
 }
