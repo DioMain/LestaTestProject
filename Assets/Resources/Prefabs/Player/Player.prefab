@@ -366,12 +366,16 @@ MonoBehaviour:
   modelTrasform: {fileID: 4723804049980660338}
   groundPoint: {fileID: 5940829836919264078}
   body: {fileID: 8676925790602838778}
-  moveSpeed: 14
+  moveSpeed: 18
   runFactor: 1.25
-  notGroundFactor: 0.2
+  notGroundFactor: 0.4
+  coyoteTime: 0.5
   jumpForce: 350
-  jumpRayDistance: 0.1
+  jumpRayDistance: 0.75
   rotateForce: 4
+  CanMove: 1
+  CanJump: 1
+  CanRotate: 1
 --- !u!114 &4838213747493866056
 MonoBehaviour:
   m_ObjectHideFlags: 0

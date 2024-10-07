@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviourPlus
@@ -18,6 +19,8 @@ public class PlayerMovement : MonoBehaviourPlus
     private float runFactor;
     [SerializeField]
     private float notGroundFactor = 0.2f;
+    [SerializeField, Range(0f, 1f)]
+    private float coyoteTime = 0.1f;
 
     [Space]
 
@@ -40,6 +43,8 @@ public class PlayerMovement : MonoBehaviourPlus
     public bool IsGround { get; private set; } = false;
     public bool IsRun { get; private set; } = false;
 
+    private bool isAllowJump = false;
+
     public bool IsMove => moveDirection != Vector3.zero;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -49,9 +54,22 @@ public class PlayerMovement : MonoBehaviourPlus
     public override void Initialize()
     {
         StartCoroutine(RotationAnimation());
+        StartCoroutine(CoyoteTime());
     }
 
     private void Update()
+    {
+        MovementLogic();
+
+        JumpLogic();
+    }
+
+    private void FixedUpdate()
+    {
+        MovementLogicFixed();
+    }
+
+    private void MovementLogic()
     {
         moveDirection = Vector3.zero;
 
@@ -69,20 +87,10 @@ public class PlayerMovement : MonoBehaviourPlus
 
         moveDirection = moveDirection.normalized;
 
-        IsGround = Physics.Raycast(groundPoint.position, Vector3.down, jumpRayDistance, LayerMask.GetMask("Floor"));
-
-        if (IsGround && CanJump && Input.GetKeyDown(GameManager.Instance.Config.Jump))
-            body.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
         IsRun = Input.GetKey(Game.Config.Run);
     }
 
-    private void FixedUpdate()
-    {
-        MovementLogic();
-    }
-
-    private void MovementLogic()
+    private void MovementLogicFixed()
     {
         if (IsMove && CanMove)
         {
@@ -99,6 +107,18 @@ public class PlayerMovement : MonoBehaviourPlus
         }
     }
 
+    private void JumpLogic()
+    {
+        IsGround = Physics.Raycast(groundPoint.position, Vector3.down, jumpRayDistance, LayerMask.GetMask("Floor"));
+
+        if (CanJump && isAllowJump && Input.GetKeyDown(GameManager.Instance.Config.Jump))
+        {
+            body.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+            isAllowJump = false;
+        }
+    }
+
     private IEnumerator RotationAnimation()
     {
         while (true)
@@ -112,6 +132,21 @@ public class PlayerMovement : MonoBehaviourPlus
             }
 
             yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator CoyoteTime()
+    {
+        while (true)
+        {
+            yield return new WaitWhile(() => !IsGround);
+
+            isAllowJump = true;
+
+            yield return new WaitWhile(() => IsGround);
+            yield return new WaitForSeconds(coyoteTime);
+
+            isAllowJump = false;
         }
     }
 }
