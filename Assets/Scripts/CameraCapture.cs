@@ -34,10 +34,9 @@ public class CameraCapture : MonoBehaviour
             lookDirection.z = Mathf.Sin(alphaAngle * Mathf.Deg2Rad) * Mathf.Cos(betaAngle * Mathf.Deg2Rad);
             lookDirection.y = Mathf.Sin(betaAngle * Mathf.Deg2Rad);
 
-            transform.position = target.position + new Vector3(lookDirection.x * offset, lookDirection.y * offset, lookDirection.z * offset) + new Vector3(0, height, 0);
-
             LookDireciton = lookDirection;
 
+            transform.position = target.position + new Vector3(LookDireciton.x * offset, LookDireciton.y * offset, LookDireciton.z * offset) + new Vector3(0, height, 0);
             transform.LookAt(target);
 
             alphaAngle -= Input.GetAxis("Mouse X") * sensitivity;

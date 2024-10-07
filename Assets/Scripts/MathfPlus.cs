@@ -12,7 +12,6 @@ public static class MathfPlus
 
         return result;
     }
-
     public static int Mod(int value, int mod)
     {
         int result = value % mod;
