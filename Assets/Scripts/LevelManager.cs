@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -10,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public CameraCapture CameraCapture;
     public UIManager UI;
     public CheckpointManager Checkpoint;
+    public GameTimer Timer;
 
     private void Start()
     {
@@ -17,6 +16,8 @@ public class LevelManager : MonoBehaviour
 
         Cursor.visible = false;
         GameManager.Instance.Life.Restore();
+
+        Timer = new GameTimer();
 
         Checkpoint = new CheckpointManager(this);
 

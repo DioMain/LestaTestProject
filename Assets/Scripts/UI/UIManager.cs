@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviourPlus
     private GameObject restartButton;
     [SerializeField] 
     private GameObject checkpointInfo;
+    [SerializeField]
+    private TextMeshProUGUI timerOutput;
 
     [SerializeField]
     private LineBar lineBar;
@@ -32,12 +34,21 @@ public class UIManager : MonoBehaviourPlus
 
     private void On_Win()
     {
+        if (!Game.Life.IsAlive)
+            return;
+
         winTxt.SetActive(true);
         restartButton.SetActive(true);
+
+        timerOutput.text = $"TIME: {Level.Timer.Time.Minutes}.{Level.Timer.Time.Seconds}.{Level.Timer.Time.Milliseconds}";
+        timerOutput.gameObject.SetActive(true);
     }
 
     private void Life_OnDeath()
     {
+        if (Game.Win.IsWin)
+            return;
+
         loseTxt.SetActive(true);
         restartButton.SetActive(true);
     }

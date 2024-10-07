@@ -7,6 +7,8 @@ public class PlayerLife
 
     public float MaxHeal => config.MaxHeal;
 
+    public bool IsAlive => Heal > 0;
+
     public event Action OnDamage;
     public event Action OnHealing;
     public event Action OnDeath;
