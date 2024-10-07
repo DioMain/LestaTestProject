@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviourPlus
     public bool IsMove => moveDirection != Vector3.zero;
 
     private Vector3 moveDirection = Vector3.zero;
+    private RaycastHit groundHit;
 
     private Vector3 CameraFoward => LevelManager.Instance.CameraCapture.transform.forward;
 
@@ -103,13 +104,16 @@ public class PlayerMovement : MonoBehaviourPlus
             resultMoveVector.x = originalX * Mathf.Cos(-alpha * Mathf.Deg2Rad) - originalZ * Mathf.Sin(-alpha * Mathf.Deg2Rad);
             resultMoveVector.z = originalX * Mathf.Sin(-alpha * Mathf.Deg2Rad) + originalZ * Mathf.Cos(-alpha * Mathf.Deg2Rad);
 
+            if (groundHit.normal != Vector3.zero)
+                resultMoveVector = Vector3.ProjectOnPlane(resultMoveVector, groundHit.normal).normalized;
+
             body.AddForce(resultMoveVector * moveSpeed * (IsRun ? runFactor : 1) * (!IsGround ? notGroundFactor : 1), ForceMode.Impulse);
         }
     }
 
     private void JumpLogic()
     {
-        IsGround = Physics.Raycast(groundPoint.position, Vector3.down, jumpRayDistance, LayerMask.GetMask("Floor"));
+        IsGround = Physics.Raycast(groundPoint.position, Vector3.down, out groundHit, jumpRayDistance, LayerMask.GetMask("Floor"));
 
         if (CanJump && isAllowJump && Input.GetKeyDown(GameManager.Instance.Config.Jump))
         {
