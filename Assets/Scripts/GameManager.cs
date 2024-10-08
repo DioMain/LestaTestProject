@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour, IInitialize
     public GameConfig Config;
     public PlayerLife Life;
     public WinManager Win;
+    public AudioManager Audio;
 
     private void Awake()
     {

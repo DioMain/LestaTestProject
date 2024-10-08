@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviourPlus
     private float jumpForce;
     [SerializeField]
     private float jumpRayDistance = 0.3f;
+    [SerializeField]
+    private float jumpRayRadius = 0.25f;
 
     [Space]
 
@@ -113,7 +115,7 @@ public class PlayerMovement : MonoBehaviourPlus
 
     private void JumpLogic()
     {
-        IsGround = Physics.Raycast(groundPoint.position, Vector3.down, out groundHit, jumpRayDistance, LayerMask.GetMask("Floor"));
+        IsGround = Physics.SphereCast(groundPoint.position, jumpRayRadius, Vector3.down, out groundHit, jumpRayDistance, LayerMask.GetMask("Floor"), QueryTriggerInteraction.UseGlobal);
 
         if (CanJump && isAllowJump && Input.GetKeyDown(GameManager.Instance.Config.Jump))
         {
