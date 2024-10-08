@@ -1,7 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
-
-public static class MathfPlus
+﻿public static class MathfPlus
 {
     public static float Mod(float value, float mod)
     {
