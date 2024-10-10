@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1342175001543145203}
   - component: {fileID: 604566542865676892}
   - component: {fileID: 6791514787102486370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 5623518885015054608}
   - component: {fileID: 8427722219526197384}
   - component: {fileID: 8111346803999928474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Axis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 4059379666487991985}
   - component: {fileID: 3092094689076160525}
   - component: {fileID: 2594312774489934814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: blade (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 2994194873197456954}
   - component: {fileID: 614806112922318189}
   - component: {fileID: 4293049206043745271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: blade (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 2633315698060432978}
   - component: {fileID: 8691169961457809378}
   - component: {fileID: 4944147700683194980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: blade (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
